@@ -1,0 +1,17 @@
+.header {
+	max-width: calc(100% - 140px);
+	height: 74px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	margin: 0 auto;
+}
+
+.header__title {
+	font-weight: normal;
+	font-size: 20px;
+}
+
+.header__login-link {
+}
