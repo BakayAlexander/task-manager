@@ -1,5 +1,7 @@
 import React from 'react';
+import './MainPage.css';
 import { Api } from '../../utils/Api/Api';
+import TasksList from '../TasksList/TasksList';
 
 function MainPage() {
 	function handleClick() {
@@ -13,6 +15,7 @@ function MainPage() {
 		<section className='main-page'>
 			MainPage
 			<button onClick={handleClick}>Add task</button>
+			<TasksList />
 		</section>
 	);
 }

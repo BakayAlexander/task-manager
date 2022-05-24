@@ -1,0 +1,9 @@
+.task {
+	margin-top: 20px;
+}
+.task:nth-of-type(1) {
+	margin-top: 0;
+}
+.task__item {
+	margin: 0;
+}
