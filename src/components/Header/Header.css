@@ -8,10 +8,40 @@
 	margin: 0 auto;
 }
 
+.header__logo-container {
+	display: flex;
+	flex-direction: row;
+}
+.header__title-link {
+	text-decoration: none;
+	color: #000;
+}
 .header__title {
 	font-weight: normal;
 	font-size: 20px;
+	margin-left: 10px;
 }
 
 .header__login-link {
+	color: #fff;
+	margin-left: 30px;
+	text-decoration: none;
+	text-align: center;
+	background-color: #4285f4;
+	padding: 8px 20px;
+	border-radius: 3px;
+	transition: 0.1s ease-in;
+}
+
+.header__login-link:hover {
+	opacity: 0.7;
+}
+
+@media screen and (max-width: 600px) {
+	.header {
+		max-width: calc(100% - 50px);
+	}
+	.header__title-link {
+		display: none;
+	}
 }

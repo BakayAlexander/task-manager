@@ -6,9 +6,13 @@ import './Header.css';
 function Header() {
 	return (
 		<header className='header'>
-			<h1 className='header__title'>Task manager</h1>
-			<Logo />
-			<Link className='header__login-link' to='/signin'>
+			<div className='header__logo-container'>
+				<Logo />
+				<Link to='/' className='header__title-link'>
+					<h1 className='header__title'>Task manager</h1>
+				</Link>
+			</div>
+			<Link className='header__login-link' to='/login'>
 				Sign in
 			</Link>
 		</header>

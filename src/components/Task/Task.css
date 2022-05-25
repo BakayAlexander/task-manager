@@ -1,9 +1,86 @@
 .task {
-	margin-top: 20px;
+	margin: 40px auto 0;
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	border-radius: 6px;
+	border: 3px solid rgb(90, 90, 90);
+	overflow: hidden;
+	padding: 30px;
+	max-height: 600px;
+	position: relative;
 }
 .task:nth-of-type(1) {
 	margin-top: 0;
 }
+
+.task_done {
+	border-color: rgb(80, 93, 0);
+}
+
+.task_not-done {
+	border-color: rgb(234, 206, 0);
+}
+
+.task__button-edit {
+	width: 24px;
+	height: 24px;
+	cursor: pointer;
+	background-color: transparent;
+	border: 1px solid rgb(11, 11, 11);
+	border-radius: 5px;
+	transition: opacity 0.5s ease-in;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 5px;
+	right: 10px;
+}
+
+.task__button-edit:hover {
+	opacity: 0.6;
+}
+
+.task__status-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.task__user-container {
+	margin-top: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.task__task-container {
+	margin-top: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	background-color: #f8faff;
+	border-radius: 20px;
+	padding: 10px;
+}
+
 .task__item {
 	margin: 0;
+}
+
+.task__item-title {
+	font-weight: 500;
+}
+
+@media screen and (max-width: 800px) {
+	.task {
+		width: 80%;
+	}
+
+	.task__button-edit {
+		width: 18px;
+		height: 18px;
+		margin-left: 10px;
+	}
 }

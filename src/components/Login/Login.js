@@ -1,8 +1,11 @@
 import React from 'react';
-import { Api } from '../../utils/Api/Api';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { loginAction } from '../../store/reducer';
 import './Login.css';
 
 function Login({ onSubmit, ...props }) {
+	const dispatch = useDispatch();
 	const [login, setLogin] = React.useState('');
 	const [password, setPassword] = React.useState('');
 
@@ -16,7 +19,7 @@ function Login({ onSubmit, ...props }) {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		console.log(login, password);
+		dispatch(loginAction(login, password));
 	}
 	return (
 		<section className='login'>
@@ -50,6 +53,14 @@ function Login({ onSubmit, ...props }) {
 				<button className='login-form__submit-button' type='submit'>
 					Login
 				</button>
+				<div className='login-form__link-container'>
+					<span className='login-form__signup-span'>
+						This form is available only for users with admin rights.
+						<Link to='/' className='login-form__signup-link'>
+							To main page.
+						</Link>
+					</span>
+				</div>
 			</form>
 		</section>
 	);

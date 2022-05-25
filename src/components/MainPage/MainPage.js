@@ -13,8 +13,8 @@ function MainPage() {
 
 	return (
 		<section className='main-page'>
-			MainPage
-			<button onClick={handleClick}>Add task</button>
+			{/* MainPage
+			<button onClick={handleClick}>Add task</button> */}
 			<TasksList />
 		</section>
 	);
