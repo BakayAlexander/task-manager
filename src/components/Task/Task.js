@@ -1,23 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import './Task.css';
 import editButton from '../../images/edit_button.svg';
-import { useSelector } from 'react-redux';
 import { tokenSelector } from '../../store/selectors';
+import { selectOptions } from '../../utils/config';
 
 function Task({ taskData, onEdit }) {
 	const { id, username, email, text, status } = taskData;
 	const token = useSelector(tokenSelector);
+	const [statusName, setStatusName] = useState('');
 
-	let statusName = 'Status is not defined';
-	if (status === 0) {
-		statusName = 'Not completed. Not edited.';
-	} else if (status === 1) {
-		statusName = 'Not completed. Edited.';
-	} else if (status === 10) {
-		statusName = 'Completed. Not edited.';
-	} else if (status === 11) {
-		statusName = 'Completed. Edited.';
-	}
+	useEffect(() => {
+		const array = selectOptions.filter((statusObj) => {
+			return statusObj.value === status;
+		});
+		setStatusName(array[0].label);
+	}, [status]);
 
 	function handleEditTask(e) {
 		e.preventDefault();

@@ -25,7 +25,6 @@ function FormAdd({ onSubmit, nameValue, emailValue, taskValue, onChangeValue }) 
 					className='form-add__input'
 					id='email-input'
 					type='email'
-					pattern="(?!(^[.-].*|[^@]*[.-]@|.*\.{2,}.*)|^.{254}.)([a-zA-Z0-9!#$%&'*+\/=?^_`{|}~.-]+@)(?!-.*|.*-\.)([a-zA-Z0-9-]{1,63}\.)+[a-zA-Z]{2,15}"
 					autoComplete='none'
 					placeholder='Please enter email'
 					required

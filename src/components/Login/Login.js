@@ -1,28 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { getCookie, loginAction } from '../../store/actions';
 import { errorLoginSelector } from '../../store/selectors';
 import './Login.css';
 
-function Login({ onSubmit, ...props }) {
+function Login() {
 	const dispatch = useDispatch();
-	const [login, setLogin] = React.useState('');
-	const [password, setPassword] = React.useState('');
 	const history = useNavigate();
 	const error = useSelector(errorLoginSelector);
 
-	function handleChangeLogin(e) {
-		setLogin(e.target.value);
-	}
+	const initialState = {
+		login: '',
+		password: '',
+	};
 
-	function handleChangePassword(e) {
-		setPassword(e.target.value);
-	}
+	const [authValues, setAuthValues] = useState(initialState);
+
+	const handleChangeValue = (e) => {
+		const { name, value } = e.target;
+		setAuthValues({ ...authValues, [name]: value });
+	};
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		dispatch(loginAction(login, password)).then(() => {
+		dispatch(loginAction(authValues.login, authValues.password)).then(() => {
 			if (getCookie('token')) {
 				history('/');
 			}
@@ -40,8 +42,9 @@ function Login({ onSubmit, ...props }) {
 						type='text'
 						autoComplete='none'
 						placeholder='Plese enter your login'
-						value={login ?? ''}
-						onChange={handleChangeLogin}
+						name='login'
+						value={authValues.login}
+						onChange={handleChangeValue}
 					></input>
 				</label>
 
@@ -53,8 +56,9 @@ function Login({ onSubmit, ...props }) {
 						type='password'
 						autoComplete='none'
 						placeholder='Please enter your password'
-						value={password ?? ''}
-						onChange={handleChangePassword}
+						name='password'
+						value={authValues.password}
+						onChange={handleChangeValue}
 					></input>
 				</label>
 				{error.password && <span className='login-form__span-error'>User name or password is incorrect</span>}
@@ -74,4 +78,4 @@ function Login({ onSubmit, ...props }) {
 	);
 }
 
-export default Login;
+export default React.memo(Login);

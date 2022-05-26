@@ -7,7 +7,7 @@ import Preloader from '../Preloader/Preloader';
 import './TasksList.css';
 import Task from '../Task/Task';
 import Popup from '../Popup/Popup';
-import { selectOptions } from '../../utils/config';
+import { REG_EXP_EMAIL, selectOptions } from '../../utils/config';
 import FormUpdate from '../FormUpdate/FormUpdate';
 import FormAdd from '../FormAdd/FormAdd';
 
@@ -30,7 +30,7 @@ function TasksList() {
 
 	const [taskValues, setTaskValues] = useState(initialState);
 
-	const changeValue = (e) => {
+	const handleChangeValue = (e) => {
 		const { name, value } = e.target;
 		setTaskValues({ ...taskValues, [name]: value });
 	};
@@ -49,9 +49,17 @@ function TasksList() {
 		setIsUpdatePopupOpen(false);
 	}
 
+	function validateEmail(email) {
+		return REG_EXP_EMAIL.test(email);
+	}
+
 	function handleSubmitCreateTask(e) {
 		e.preventDefault();
-		dispatch(createTaskAction(taskValues.name, taskValues.email, taskValues.task));
+		if (validateEmail(taskValues.email)) {
+			dispatch(createTaskAction(taskValues.name, taskValues.email, taskValues.task));
+		} else {
+			alert('Email is not valid');
+		}
 		onClosePopup();
 		setTaskValues({ ...taskValues, name: '', email: '', task: '' });
 	}
@@ -83,13 +91,13 @@ function TasksList() {
 					nameValue={taskValues.name}
 					emailValue={taskValues.email}
 					taskValue={taskValues.task}
-					onChangeValue={changeValue}
+					onChangeValue={handleChangeValue}
 				/>
 			</Popup>
 			<Popup isOpen={isUpdatePopupOpen} onClose={onClosePopup}>
 				<FormUpdate
 					onSubmit={handleSubmitUpdateTask}
-					onChangeValue={changeValue}
+					onChangeValue={handleChangeValue}
 					statusUpdateValue={taskValues.statusUpdate}
 					taskUpdateValue={taskValues.taskUpdate}
 					selectOptions={selectOptions}
@@ -99,4 +107,4 @@ function TasksList() {
 	);
 }
 
-export default TasksList;
+export default React.memo(TasksList);

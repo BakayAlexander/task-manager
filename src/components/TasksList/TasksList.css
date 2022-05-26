@@ -9,6 +9,7 @@
 	transition: 0.1s ease-in;
 	cursor: pointer;
 	font-family: 'Raleway', sans-serif;
+	margin: 0 auto;
 }
 
 .tasks-list__add-button:hover {
