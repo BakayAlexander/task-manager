@@ -1,0 +1,89 @@
+.sort-panel__container {
+	max-width: 90%;
+	margin: 20px auto;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	gap: 20px;
+	border-bottom: 1px solid #000;
+	padding-bottom: 10px;
+}
+
+.sort-panel__pages-container {
+	max-width: 70%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.sort-panel__pages-title {
+	font-size: 14px;
+}
+
+.sort-panel__page-button {
+	border: 0;
+	background-color: transparent;
+	cursor: pointer;
+	font-family: 'Raleway', sans-serif;
+	font-size: 14px;
+	margin-left: 15px;
+	cursor: pointer;
+	transition: 0.1s ease-in;
+}
+
+.sort-panel__page-button_active {
+	font-size: 25px;
+}
+
+.sort-panel__page-button:hover {
+	opacity: 0.7;
+}
+
+.sort-panel__sort-container {
+	overflow: hidden;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.sort-panel__sort-title {
+	font-size: 14px;
+}
+
+.sort-panel__sort-button {
+	border: 0;
+	background-color: transparent;
+	cursor: pointer;
+	font-family: 'Raleway', sans-serif;
+	font-size: 14px;
+	margin-left: 15px;
+	cursor: pointer;
+	transition: 0.1s ease-in;
+}
+
+.sort-panel__sort-button_active {
+	font-size: 16px;
+	border-bottom: 1px solid rgb(234, 206, 0);
+}
+
+.sort-panel__sort-button:hover {
+	opacity: 0.7;
+}
+.sort-panel__sort-arrow {
+	width: 10px;
+	height: 10px;
+	opacity: 0.7;
+	margin-left: 5px;
+	transform: rotate(90deg);
+}
+
+@media (max-width: 800px) {
+	.sort-panel__container {
+		flex-direction: column-reverse;
+	}
+
+	.sort-panel__pages-container {
+		max-width: 90%;
+	}
+}

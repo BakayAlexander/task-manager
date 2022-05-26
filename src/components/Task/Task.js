@@ -9,28 +9,23 @@ function Task({ taskData, onEdit }) {
 	const token = useSelector(tokenSelector);
 
 	let statusName = 'Status is not defined';
-	let taskClass = '';
 	if (status === 0) {
-		statusName = 'Task is not done';
-		taskClass = 'not-done';
+		statusName = 'Not completed. Not edited.';
 	} else if (status === 1) {
-		statusName = 'Task is not done. Edited by admin.';
-		taskClass = 'not-done';
+		statusName = 'Not completed. Edited.';
 	} else if (status === 10) {
-		statusName = 'Task is done';
-		taskClass = 'done';
+		statusName = 'Completed. Not edited.';
 	} else if (status === 11) {
-		statusName = 'Task is done. Edited by admin.';
+		statusName = 'Completed. Edited.';
 	}
 
 	function handleEditTask(e) {
 		e.preventDefault();
-		onEdit();
-		console.log(id);
-		console.log('Yeah! We start editing');
+		onEdit(id, status, text);
 	}
+
 	return (
-		<li className={`task task_${taskClass}`}>
+		<li className={`task task_${status}`}>
 			{token && (
 				<button className='task__button-edit' onClick={handleEditTask}>
 					<img src={editButton} alt='Кнопка Редактировать' className='profile__edit-pic' />

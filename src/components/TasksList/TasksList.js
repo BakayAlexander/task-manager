@@ -1,36 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './TasksList.css';
-import { Api } from '../../utils/Api/Api';
 import Task from '../Task/Task';
 import Popup from '../Popup/Popup';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllTasksAction } from '../../store/reducer';
-import { allTaskCountSelector, tasksSelector, tokenSelector } from '../../store/selectors';
+import { createTaskAction, updateTaskAction } from '../../store/reducer';
+import { tasksSelector, tokenSelector } from '../../store/selectors';
+import SortPanel from '../SortPanel/SortPanel';
 
 function TasksList() {
-	// const [tasks, setTasks] = useState([]);
 	const [isAddPopupOpen, setIsAddPopupOpen] = useState(false);
 	const [isUpdatePopupOpen, setIsUpdatePopupOpen] = useState(false);
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [task, setTask] = useState('');
-	const [pageNumber, setPageNumber] = useState(1);
+	const [taskUpdate, setTaskUpdate] = useState('');
+	const [statusUpdate, setStatusUpdate] = useState('');
+	const [idUpdate, setIdUpdate] = useState('');
+
 	const tasks = useSelector(tasksSelector);
-	const allTaskCount = useSelector(allTaskCountSelector);
-
+	const token = useSelector(tokenSelector);
 	const dispatch = useDispatch();
-
-	useEffect(() => {
-		dispatch(getAllTasksAction());
-		// Api.getAllTasks().then((res) => setTasks(res.message.tasks));
-	}, [dispatch]);
 
 	function handleClickAddButton() {
 		setIsAddPopupOpen(true);
 	}
 
-	function handleClickUpdateButton() {
+	function handleClickUpdateButton(id, status, task) {
 		setIsUpdatePopupOpen(true);
+		setIdUpdate(id);
+		setStatusUpdate(status);
+		setTaskUpdate(task);
 	}
 
 	function onClosePopup() {
@@ -50,17 +49,32 @@ function TasksList() {
 		setTask(e.target.value);
 	}
 
+	function handleChangeTaskUpdate(e) {
+		setTaskUpdate(e.target.value);
+	}
+
+	function handleChangeStatusUpdate(e) {
+		setStatusUpdate(e.target.value);
+	}
+
 	function handleSubmitCreateTask(e) {
 		e.preventDefault();
-		dispatch(getAllTasksAction(name, email, task));
+		dispatch(createTaskAction(name, email, task));
 		onClosePopup();
 		setName('');
 		setEmail('');
 		setTask('');
 	}
 
+	function handleSubmitUpdateTask(e) {
+		e.preventDefault();
+		dispatch(updateTaskAction(taskUpdate, Number(statusUpdate), token, idUpdate));
+		onClosePopup();
+	}
+
 	return (
 		<>
+			<SortPanel />
 			<div className='tasks-list__container-button'>
 				<button className='tasks-list__add-button' onClick={handleClickAddButton}>
 					Add task
@@ -120,20 +134,26 @@ function TasksList() {
 				</form>
 			</Popup>
 			<Popup isOpen={isUpdatePopupOpen} onClose={onClosePopup}>
-				<form className='task-list' onSubmit={handleSubmitCreateTask} title='Add new station'>
+				<form className='task-list' onSubmit={handleSubmitUpdateTask} title='Add new station'>
 					<h2 className='task-list__title'>Update task</h2>
 					<label className='task-list__label'>
+						Status:
+						<select className='task-list__select' value={statusUpdate} onChange={handleChangeStatusUpdate}>
+							<option value={0}>Not completed. Not edited.</option>
+							<option value={1}>Not completed. Edited.</option>
+							<option value={10}>Completed. Not edited.</option>
+							<option value={11}>Completed. Edited.</option>
+						</select>
+					</label>
+					<label className='task-list__label'>
 						Task:
-						<input
-							className='task-list__input'
-							id='comment-input'
+						<textarea
+							className='task-list__textarea'
 							type='text'
-							autoComplete='none'
 							placeholder='Please enter task'
-							required
-							value={task ?? ''}
-							onChange={handleChangeTask}
-						></input>
+							value={taskUpdate ?? ''}
+							onChange={handleChangeTaskUpdate}
+						></textarea>
 					</label>
 					<button className='task-list__submit-button' type='submit'>
 						Update

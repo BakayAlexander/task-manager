@@ -7,30 +7,24 @@ import Login from '../Login/Login';
 import { checkTokenAction } from '../../store/reducer';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { isLoadingSelector, tokenSelector } from '../../store/selectors';
-import Preloader from '../Preloader/Preloader';
+import { tokenSelector } from '../../store/selectors';
 
 function App() {
 	const dispatch = useDispatch();
 	const token = useSelector(tokenSelector);
-	const isLoading = useSelector(isLoadingSelector);
 
 	useEffect(() => {
 		dispatch(checkTokenAction());
-	}, [dispatch]);
+	}, [token, dispatch]);
 
 	return (
 		<div className='App'>
 			<Header />
-			{isLoading ? (
-				<Preloader />
-			) : (
-				<Routes>
-					<Route exact path='/' element={<MainPage />} />
-					<Route exact path='/login' element={<Login />} />
-					<Route exact path='*' element={<NotFoundPage />} />
-				</Routes>
-			)}
+			<Routes>
+				<Route exact path='/' element={<MainPage />} />
+				<Route exact path='/login' element={<Login />} />
+				<Route exact path='*' element={<NotFoundPage />} />
+			</Routes>
 		</div>
 	);
 }

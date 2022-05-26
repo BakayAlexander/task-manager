@@ -81,10 +81,10 @@ export const setToken = (data) => ({
 	data,
 });
 
-export const getAllTasksAction = () => async (dispatch) => {
+export const getAllTasksAction = (field, direction, page) => async (dispatch) => {
 	try {
 		dispatch(setLoading(true));
-		const data = await Api.getAllTasks();
+		const data = await Api.getAllTasks(field, direction, page);
 		if (data.status === 'ok') dispatch(setAllTasks(data.message));
 		dispatch(setLoading(false));
 	} catch (error) {}

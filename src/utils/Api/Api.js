@@ -8,7 +8,7 @@ const instance = axios.create({
 export const Api = {
 	getAllTasks(sortField, sortDirection, page) {
 		return instance
-			.get(`${BASE_DEVELOPER}`, { sort_field: sortField, sort_direction: sortDirection, page: page })
+			.get(`${BASE_DEVELOPER}`, { params: { sort_field: sortField, sort_direction: sortDirection, page: page } })
 			.then((res) => res.data);
 	},
 

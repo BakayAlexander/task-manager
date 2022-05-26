@@ -14,12 +14,19 @@
 	margin-top: 0;
 }
 
-.task_done {
-	border-color: rgb(80, 93, 0);
+.task_0 {
+	border-color: rgb(0, 0, 0);
 }
 
-.task_not-done {
+.task_1 {
 	border-color: rgb(234, 206, 0);
+}
+
+.task_10 {
+	border-color: rgb(8, 0, 252);
+}
+.task_11 {
+	border-color: rgb(0, 163, 3);
 }
 
 .task__button-edit {

@@ -39,12 +39,27 @@
 	border: 1px solid #2f2f2f;
 	border-radius: 8px;
 	color: #2f2f2f;
-	outline: none;
 	margin-top: 10px;
+	font-family: 'Raleway', sans-serif;
 }
 
 .task-list__input:focus {
 	outline: 1px solid #4285f4;
+}
+.task-list__select {
+	width: 250px;
+	margin-top: 10px;
+	font-family: 'Raleway', sans-serif;
+}
+.task-list__textarea {
+	width: 250px;
+	height: 300px;
+	border: 1px solid #2f2f2f;
+	border-radius: 8px;
+	color: #2f2f2f;
+	outline: none;
+	margin-top: 10px;
+	font-family: 'Raleway', sans-serif;
 }
 
 .task-list__submit-button {
