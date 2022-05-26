@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { loginAction } from '../../store/actions';
+import { getCookie, loginAction } from '../../store/actions';
 import { errorLoginSelector } from '../../store/selectors';
 import './Login.css';
 
@@ -23,7 +23,7 @@ function Login({ onSubmit, ...props }) {
 	function handleSubmit(e) {
 		e.preventDefault();
 		dispatch(loginAction(login, password)).then(() => {
-			if (localStorage.getItem('token')) {
+			if (getCookie('token')) {
 				history('/');
 			}
 		});

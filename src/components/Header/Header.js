@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { logoutAction } from '../../store/actions';
+import { getCookie, logoutAction } from '../../store/actions';
 import Logo from '../Logo/Logo';
 import './Header.css';
 
@@ -16,7 +16,7 @@ function Header() {
 				</Link>
 			</div>
 			<div>
-				{localStorage.getItem('token') ? (
+				{getCookie('token') ? (
 					<button
 						className='header__logout-button'
 						onClick={() => {
