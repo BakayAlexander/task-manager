@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllTasksAction } from '../../store/reducer';
-import { allTaskCountSelector } from '../../store/selectors';
+import { getAllTasksAction } from '../../store/actions';
+import { allTaskCountSelector, tokenSelector } from '../../store/selectors';
 import sortArrow from '../../images/sort-arrow.svg';
 import './SortPanel.css';
 
@@ -11,6 +11,7 @@ function SortPanel() {
 	const [sortedDirection, setSortedDirection] = useState('asc');
 	const [pageNumber, setPageNumber] = useState(1);
 	const allTaskCount = useSelector(allTaskCountSelector);
+	const token = useSelector(tokenSelector);
 
 	let countedPages;
 	let pagesArray = [];
@@ -33,9 +34,7 @@ function SortPanel() {
 
 	useEffect(() => {
 		dispatch(getAllTasksAction(sortedField, sortedDirection, pageNumber));
-	}, [sortedField, sortedDirection, pageNumber, dispatch]);
-
-	console.log(sortedField);
+	}, [sortedField, token, sortedDirection, pageNumber, dispatch]);
 
 	return (
 		<div className='sort-panel__container'>

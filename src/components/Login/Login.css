@@ -45,6 +45,11 @@
 	outline: 1px solid #4285f4;
 }
 
+.login-form__span-error {
+	color: red;
+	margin-top: 10px;
+}
+
 .login-form__submit-button {
 	margin-top: 192px;
 	width: 100%;

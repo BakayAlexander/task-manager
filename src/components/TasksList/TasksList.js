@@ -3,9 +3,10 @@ import './TasksList.css';
 import Task from '../Task/Task';
 import Popup from '../Popup/Popup';
 import { useDispatch, useSelector } from 'react-redux';
-import { createTaskAction, updateTaskAction } from '../../store/reducer';
-import { tasksSelector, tokenSelector } from '../../store/selectors';
+import { createTaskAction, updateTaskAction } from '../../store/actions';
+import { isLoadingSelector, tasksSelector, tokenSelector } from '../../store/selectors';
 import SortPanel from '../SortPanel/SortPanel';
+import Preloader from '../Preloader/Preloader';
 
 function TasksList() {
 	const [isAddPopupOpen, setIsAddPopupOpen] = useState(false);
@@ -19,6 +20,7 @@ function TasksList() {
 
 	const tasks = useSelector(tasksSelector);
 	const token = useSelector(tokenSelector);
+	const isLoading = useSelector(isLoadingSelector);
 	const dispatch = useDispatch();
 
 	function handleClickAddButton() {
@@ -75,16 +77,18 @@ function TasksList() {
 	return (
 		<>
 			<SortPanel />
-			<div className='tasks-list__container-button'>
-				<button className='tasks-list__add-button' onClick={handleClickAddButton}>
-					Add task
-				</button>
-			</div>
-			<ul className='tasks-list'>
-				{tasks.map((task) => (
-					<Task key={task.id} taskData={task} onEdit={handleClickUpdateButton} />
-				))}
-			</ul>
+			<button className='tasks-list__add-button' onClick={handleClickAddButton}>
+				Add new task
+			</button>
+			{isLoading ? (
+				<Preloader />
+			) : (
+				<ul className='tasks-list'>
+					{tasks.map((task) => (
+						<Task key={task.id} taskData={task} onEdit={handleClickUpdateButton} />
+					))}
+				</ul>
+			)}
 			<Popup isOpen={isAddPopupOpen} onClose={onClosePopup}>
 				<form className='task-list' onSubmit={handleSubmitCreateTask} title='Add new station'>
 					<h2 className='task-list__title'>Add new task</h2>

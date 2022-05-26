@@ -31,9 +31,27 @@
 	padding: 8px 20px;
 	border-radius: 3px;
 	transition: 0.1s ease-in;
+	font-size: 14px;
 }
 
 .header__login-link:hover {
+	opacity: 0.7;
+}
+
+.header__logout-button {
+	border: 0;
+	color: #fff;
+	margin-left: 30px;
+	text-decoration: none;
+	text-align: center;
+	background-color: #888888;
+	padding: 8px 20px;
+	border-radius: 3px;
+	font-size: 14px;
+	transition: 0.1s ease-in;
+}
+
+.header__logout-button:hover {
 	opacity: 0.7;
 }
 

@@ -1,13 +1,16 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { loginAction } from '../../store/reducer';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { loginAction } from '../../store/actions';
+import { errorLoginSelector } from '../../store/selectors';
 import './Login.css';
 
 function Login({ onSubmit, ...props }) {
 	const dispatch = useDispatch();
 	const [login, setLogin] = React.useState('');
 	const [password, setPassword] = React.useState('');
+	const history = useNavigate();
+	const error = useSelector(errorLoginSelector);
 
 	function handleChangeLogin(e) {
 		setLogin(e.target.value);
@@ -19,7 +22,11 @@ function Login({ onSubmit, ...props }) {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		dispatch(loginAction(login, password));
+		dispatch(loginAction(login, password)).then(() => {
+			if (localStorage.getItem('token')) {
+				history('/');
+			}
+		});
 	}
 	return (
 		<section className='login'>
@@ -50,6 +57,7 @@ function Login({ onSubmit, ...props }) {
 						onChange={handleChangePassword}
 					></input>
 				</label>
+				{error.password && <span className='login-form__span-error'>User name or password is incorrect</span>}
 				<button className='login-form__submit-button' type='submit'>
 					Login
 				</button>
