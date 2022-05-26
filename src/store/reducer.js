@@ -21,7 +21,9 @@ export const reducer = (state = defaultState, action) => {
 			};
 		case 'SET_TASK':
 			const newArrayAdd = [...state.tasks];
-			if (newArrayAdd.length < 3) newArrayAdd.push(action.data);
+			if (newArrayAdd.length < 3) {
+				newArrayAdd.push(action.data);
+			}
 			const newCount = ++state.allTaskCount;
 			return { ...state, tasks: newArrayAdd, allTaskCount: newCount };
 		case 'TASK_ERROR':

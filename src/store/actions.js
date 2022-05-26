@@ -15,10 +15,13 @@ export const getAllTasksAction = (field, direction, page) => async (dispatch) =>
 	try {
 		dispatch(setLoading(true));
 		const data = await Api.getAllTasks(field, direction, page);
-		if (data.status === 'ok') dispatch(setAllTasks(data.message));
-		dispatch(setLoading(false));
+		if (data.status === 'ok') {
+			return dispatch(setAllTasks(data.message));
+		}
 	} catch (error) {
 		console.log(error);
+	} finally {
+		dispatch(setLoading(false));
 	}
 };
 
@@ -26,11 +29,14 @@ export const createTaskAction = (username, email, text) => async (dispatch) => {
 	try {
 		dispatch(setLoading(true));
 		const data = await Api.createTask(username, email, text);
-		if (data.status === 'ok') dispatch(setNewTask(data.message));
-		else if (data.status === 'error') dispatch(setTaskError(data.message));
-		dispatch(setLoading(false));
+		if (data.status === 'ok') {
+			return dispatch(setNewTask(data.message));
+		}
+		dispatch(setTaskError(data.message));
 	} catch (error) {
 		console.log(error);
+	} finally {
+		dispatch(setLoading(false));
 	}
 };
 
@@ -53,13 +59,14 @@ export const loginAction = (username, password) => async (dispatch) => {
 		if (data.status === 'ok') {
 			dispatch(setToken(data.message.token));
 			document.cookie = `token=${data.message.token}; path=/; max-age=86400`;
-		} else if (data.status === 'error') {
-			document.cookie = `token=; path=/; max-age=0`;
-			dispatch(setErrorLogin(data.message));
+			return;
 		}
-		dispatch(setLoading(false));
+		document.cookie = `token=; path=/; max-age=0`;
+		dispatch(setErrorLogin(data.message));
 	} catch (error) {
 		console.log(error);
+	} finally {
+		dispatch(setLoading(false));
 	}
 };
 
