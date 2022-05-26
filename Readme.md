@@ -35,7 +35,6 @@ The page will reload when you make changes.
 - :fire: React
 - :satellite: Redux
 - :shoe: CodeStyle - Prettier;
-- :movie_camera: Public film Api - [Beat Film](https://uxcandy.com/~shapoval/test-task-backend/v2/)
 - :dress: Styling - BEM
 
 # Public domain
