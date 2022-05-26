@@ -85,6 +85,11 @@
 		width: 80%;
 	}
 
+	.task__status-container {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
 	.task__button-edit {
 		width: 18px;
 		height: 18px;

@@ -4,7 +4,6 @@ import { setAllTasks, setErrorLogin, setLoading, setNewTask, setTaskError, setTo
 export const getCookie = (name) => {
 	const allCookies = document.cookie.split('; ');
 	const res = allCookies.find((item) => item.match(`${name}=`));
-	console.log(name);
 	if (res) {
 		const indexOfSlice = res.indexOf('=');
 		return res ? res.slice(indexOfSlice + 1) : undefined;
@@ -18,7 +17,9 @@ export const getAllTasksAction = (field, direction, page) => async (dispatch) =>
 		const data = await Api.getAllTasks(field, direction, page);
 		if (data.status === 'ok') dispatch(setAllTasks(data.message));
 		dispatch(setLoading(false));
-	} catch (error) {}
+	} catch (error) {
+		console.log(error);
+	}
 };
 
 export const createTaskAction = (username, email, text) => async (dispatch) => {
@@ -28,7 +29,9 @@ export const createTaskAction = (username, email, text) => async (dispatch) => {
 		if (data.status === 'ok') dispatch(setNewTask(data.message));
 		else if (data.status === 'error') dispatch(setTaskError(data.message));
 		dispatch(setLoading(false));
-	} catch (error) {}
+	} catch (error) {
+		console.log(error);
+	}
 };
 
 export const updateTaskAction = (text, status, token, id) => async (dispatch) => {
@@ -37,7 +40,9 @@ export const updateTaskAction = (text, status, token, id) => async (dispatch) =>
 		if (data.status === 'ok') dispatch(setUpdateTask({ text, status, id }));
 		else if (data.status === 'error' && data.message === 'Token is invalid or expired')
 			document.cookie = `token=; path=/; max-age=0`;
-	} catch (error) {}
+	} catch (error) {
+		console.log(error);
+	}
 };
 
 export const loginAction = (username, password) => async (dispatch) => {
@@ -53,7 +58,9 @@ export const loginAction = (username, password) => async (dispatch) => {
 			dispatch(setErrorLogin(data.message));
 		}
 		dispatch(setLoading(false));
-	} catch (error) {}
+	} catch (error) {
+		console.log(error);
+	}
 };
 
 export const checkTokenAction = () => async (dispatch) => {
@@ -64,12 +71,16 @@ export const checkTokenAction = () => async (dispatch) => {
 		} else if (!token) {
 			dispatch(setErrorLogin({}));
 		}
-	} catch (error) {}
+	} catch (error) {
+		console.log(error);
+	}
 };
 
 export const logoutAction = () => async (dispatch) => {
 	try {
 		dispatch(setToken(null));
 		document.cookie = `token=; path=/; max-age=0`;
-	} catch (error) {}
+	} catch (error) {
+		console.log(error);
+	}
 };

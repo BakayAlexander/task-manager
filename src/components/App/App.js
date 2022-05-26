@@ -8,6 +8,7 @@ import { checkTokenAction } from '../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { tokenSelector } from '../../store/selectors';
+import Footer from '../Footer/Footer';
 
 function App() {
 	const dispatch = useDispatch();
@@ -29,6 +30,7 @@ function App() {
 				<Route exact path='/login' element={<Login />} />
 				<Route exact path='*' element={<NotFoundPage />} />
 			</Routes>
+			<Footer />
 		</div>
 	);
 }
