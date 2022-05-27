@@ -1,14 +1,14 @@
-import './App.css';
-import Header from '../Header/Header';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import MainPage from '../MainPage/MainPage';
+import Header from '../Header/Header';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import Login from '../Login/Login';
 import { checkTokenAction } from '../../store/actions';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
 import { tokenSelector } from '../../store/selectors';
 import Footer from '../Footer/Footer';
+import './App.css';
+import TasksList from '../TasksList/TasksList';
 
 function App() {
 	const dispatch = useDispatch();
@@ -26,7 +26,7 @@ function App() {
 		<div className='App'>
 			<Header />
 			<Routes>
-				<Route exact path='/' element={<MainPage />} />
+				<Route exact path='/' element={<TasksList />} />
 				<Route exact path='/login' element={<Login />} />
 				<Route exact path='*' element={<NotFoundPage />} />
 			</Routes>

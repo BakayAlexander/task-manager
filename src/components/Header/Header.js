@@ -1,12 +1,15 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getCookie, logoutAction } from '../../store/actions';
+import { logoutAction } from '../../store/actions';
+import { tokenSelector } from '../../store/selectors';
 import Logo from '../Logo/Logo';
 import './Header.css';
 
 function Header() {
 	const dispatch = useDispatch();
+	const token = useSelector(tokenSelector);
+
 	return (
 		<header className='header'>
 			<div className='header__logo-container'>
@@ -16,7 +19,7 @@ function Header() {
 				</Link>
 			</div>
 			<div>
-				{getCookie('token') ? (
+				{token ? (
 					<button
 						className='header__logout-button'
 						onClick={() => {
@@ -35,4 +38,4 @@ function Header() {
 	);
 }
 
-export default Header;
+export default React.memo(Header);

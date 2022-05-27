@@ -85,4 +85,4 @@ function SortPanel() {
 	);
 }
 
-export default SortPanel;
+export default React.memo(SortPanel);
