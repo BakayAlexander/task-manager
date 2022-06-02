@@ -1,5 +1,12 @@
 import { Api } from '../utils/Api/Api';
-import { setAllTasks, setErrorLogin, setLoading, setNewTask, setTaskError, setToken, setUpdateTask } from './reducer';
+import {
+	allTasksActionCreator,
+	errorLoginActionCreator,
+	loadingActionCreator,
+	newTaskActionCreator,
+	tokenActionCreator,
+	updateTaskActionCreator,
+} from './reducer';
 
 export const getCookie = (name) => {
 	const allCookies = document.cookie.split('; ');
@@ -13,37 +20,36 @@ export const getCookie = (name) => {
 
 export const getAllTasksAction = (field, direction, page) => async (dispatch) => {
 	try {
-		dispatch(setLoading(true));
+		dispatch(loadingActionCreator(true));
 		const data = await Api.getAllTasks(field, direction, page);
 		if (data.status === 'ok') {
-			return dispatch(setAllTasks(data.message));
+			return dispatch(allTasksActionCreator(data.message));
 		}
 	} catch (error) {
 		console.log(error);
 	} finally {
-		dispatch(setLoading(false));
+		dispatch(loadingActionCreator(false));
 	}
 };
 
 export const createTaskAction = (username, email, text) => async (dispatch) => {
 	try {
-		dispatch(setLoading(true));
+		dispatch(loadingActionCreator(true));
 		const data = await Api.createTask(username, email, text);
 		if (data.status === 'ok') {
-			return dispatch(setNewTask(data.message));
+			return dispatch(newTaskActionCreator(data.message));
 		}
-		dispatch(setTaskError(data.message));
 	} catch (error) {
 		console.log(error);
 	} finally {
-		dispatch(setLoading(false));
+		dispatch(loadingActionCreator(false));
 	}
 };
 
 export const updateTaskAction = (text, status, token, id) => async (dispatch) => {
 	try {
 		const data = await Api.updateTask(text, status, token, id);
-		if (data.status === 'ok') dispatch(setUpdateTask({ text, status, id }));
+		if (data.status === 'ok') dispatch(updateTaskActionCreator({ text, status, id }));
 		else if (data.status === 'error' && data.message === 'Token is invalid or expired')
 			document.cookie = `token=; path=/; max-age=0`;
 	} catch (error) {
@@ -53,20 +59,20 @@ export const updateTaskAction = (text, status, token, id) => async (dispatch) =>
 
 export const loginAction = (username, password) => async (dispatch) => {
 	try {
-		dispatch(setLoading(true));
+		dispatch(loadingActionCreator(true));
 		const data = await Api.login(username, password);
-		dispatch(setErrorLogin({}));
+		dispatch(errorLoginActionCreator({}));
 		if (data.status === 'ok') {
-			dispatch(setToken(data.message.token));
+			dispatch(tokenActionCreator(data.message.token));
 			document.cookie = `token=${data.message.token}; path=/; max-age=86400`;
 			return;
 		}
 		document.cookie = `token=; path=/; max-age=0`;
-		dispatch(setErrorLogin(data.message));
+		dispatch(errorLoginActionCreator(data.message));
 	} catch (error) {
 		console.log(error);
 	} finally {
-		dispatch(setLoading(false));
+		dispatch(loadingActionCreator(false));
 	}
 };
 
@@ -74,9 +80,9 @@ export const checkTokenAction = () => async (dispatch) => {
 	try {
 		const token = getCookie('token');
 		if (token) {
-			dispatch(setToken(token));
+			dispatch(tokenActionCreator(token));
 		} else if (!token) {
-			dispatch(setErrorLogin({}));
+			dispatch(errorLoginActionCreator({}));
 		}
 	} catch (error) {
 		console.log(error);
@@ -85,7 +91,7 @@ export const checkTokenAction = () => async (dispatch) => {
 
 export const logoutAction = () => async (dispatch) => {
 	try {
-		dispatch(setToken(null));
+		dispatch(tokenActionCreator(null));
 		document.cookie = `token=; path=/; max-age=0`;
 	} catch (error) {
 		console.log(error);

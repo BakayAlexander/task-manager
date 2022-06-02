@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { getCookie, loginAction } from '../../store/actions';
-import { errorLoginSelector } from '../../store/selectors';
+import { getCookie, loginAction } from '../../redux/actionFunctions';
+import { errorLoginSelector } from '../../redux/selectors';
 import './Login.css';
 
 function Login() {

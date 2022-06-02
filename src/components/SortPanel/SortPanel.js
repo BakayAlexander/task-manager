@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllTasksAction } from '../../store/actions';
-import { allTaskCountSelector, tokenSelector } from '../../store/selectors';
+import { getAllTasksAction } from '../../redux/actionFunctions';
+import { allTaskCountSelector, tokenSelector } from '../../redux/selectors';
 import sortArrow from '../../images/sort-arrow.svg';
 import './SortPanel.css';
 

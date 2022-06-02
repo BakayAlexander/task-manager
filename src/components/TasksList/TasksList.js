@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createTaskAction, updateTaskAction } from '../../store/actions';
-import { isLoadingSelector, tasksSelector, tokenSelector } from '../../store/selectors';
+import { createTaskAction, updateTaskAction } from '../../redux/actionFunctions';
+import { isLoadingSelector, tasksSelector, tokenSelector } from '../../redux/selectors';
 import SortPanel from '../SortPanel/SortPanel';
 import Preloader from '../Preloader/Preloader';
 import './TasksList.css';

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import './Task.css';
 import editButton from '../../images/edit_button.svg';
-import { tokenSelector } from '../../store/selectors';
+import { tokenSelector } from '../../redux/selectors';
 import { selectOptions } from '../../utils/config';
 
 function Task({ taskData, onEdit }) {
