@@ -1,7 +1,11 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { errorLoginSelector } from '../../store/selectors';
 import './FormAdd.css';
 
 function FormAdd({ onSubmit, nameValue, emailValue, taskValue, onChangeValue }) {
+	const error = useSelector(errorLoginSelector);
+	console.log(error);
 	return (
 		<form className='form-add' onSubmit={onSubmit} title='Add new station'>
 			<h2 className='form-add__title'>Add new task</h2>

@@ -4,7 +4,7 @@ import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import Header from '../Header/Header';
 import NotFoundPage from '../NotFoundPage/NotFoundPage';
 import Login from '../Login/Login';
-import { checkTokenAction } from '../../store/actions';
+import { checkTokenAction } from '../../store/reducerFunctions';
 import { tokenSelector } from '../../store/selectors';
 import Footer from '../Footer/Footer';
 import './App.css';

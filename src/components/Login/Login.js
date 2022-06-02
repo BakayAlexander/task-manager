@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { getCookie, loginAction } from '../../store/actions';
+import { getCookie, loginAction } from '../../store/reducerFunctions';
 import { errorLoginSelector } from '../../store/selectors';
 import './Login.css';
 

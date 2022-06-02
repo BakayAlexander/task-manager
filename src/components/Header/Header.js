@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { logoutAction } from '../../store/actions';
+import { logoutAction } from '../../store/reducerFunctions';
 import { tokenSelector } from '../../store/selectors';
 import Logo from '../Logo/Logo';
 import './Header.css';

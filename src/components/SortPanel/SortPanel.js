@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllTasksAction } from '../../store/actions';
+import { getAllTasksAction } from '../../store/reducerFunctions';
 import { allTaskCountSelector, tokenSelector } from '../../store/selectors';
 import sortArrow from '../../images/sort-arrow.svg';
 import './SortPanel.css';
