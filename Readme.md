@@ -5,7 +5,7 @@ This project was building with [Create React App](https://github.com/facebook/cr
 ## Description:
 
 - Login and authoriztion.
-- Get tasks from api (https://uxcandy.com/~shapoval/test-task-backend/v2/).
+- Get tasks from api (https://uxcandy.com/~shapoval/test-task-backend/v2/).  
 **- Admin user (login: admin, password: 123) can update states and text of tasks.**
 - All users can add tasks.
 - All users can change sorting of tasks by: number, email, status or user.
