@@ -4,9 +4,9 @@ This project was building with [Create React App](https://github.com/facebook/cr
 
 ## Description:
 
+- **Admin user (login: admin, password: 123)**
 - Login and authoriztion.
-- Get tasks from api (https://uxcandy.com/~shapoval/test-task-backend/v2/).  
-**- Admin user (login: admin, password: 123) can update states and text of tasks.**
+- Get tasks from api (https://uxcandy.com/~shapoval/test-task-backend/v2/) can update states and text of tasks.  
 - All users can add tasks.
 - All users can change sorting of tasks by: number, email, status or user.
 
@@ -26,6 +26,7 @@ This project was building with [Create React App](https://github.com/facebook/cr
 - Run command `npm i`
 - Run `npm run start`
 - Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Admin user (login: admin, password: 123)**
 
 The page will reload when you make changes.
 
@@ -39,4 +40,5 @@ The page will reload when you make changes.
 
 # Public domain
 
+- **Admin user (login: admin, password: 123)**
 [Simple task manager](https://bakay-task-manager.netlify.app/)
