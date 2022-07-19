@@ -40,5 +40,5 @@ The page will reload when you make changes.
 
 # Public domain
 
-- **Admin user (login: admin, password: 123)**
+- **Admin user (login: admin, password: 123)**  
 [Simple task manager](https://bakay-task-manager.netlify.app/)
