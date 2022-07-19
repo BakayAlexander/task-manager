@@ -11,28 +11,28 @@ import './App.css';
 import TasksList from '../TasksList/TasksList';
 
 function App() {
-	const dispatch = useDispatch();
-	const token = useSelector(tokenSelector);
-	const history = useNavigate();
-	const currentPath = useLocation();
+  const dispatch = useDispatch();
+  const token = useSelector(tokenSelector);
+  const history = useNavigate();
+  const currentPath = useLocation();
 
-	useEffect(() => {
-		const path = currentPath.pathname;
-		dispatch(checkTokenAction());
-		history(path);
-	}, [token, dispatch]);
+  useEffect(() => {
+    const path = currentPath.pathname;
+    dispatch(checkTokenAction());
+    history(path);
+  }, [token, dispatch, currentPath.pathname, history]);
 
-	return (
-		<div className='App'>
-			<Header />
-			<Routes>
-				<Route exact path='/' element={<TasksList />} />
-				<Route exact path='/login' element={<Login />} />
-				<Route exact path='*' element={<NotFoundPage />} />
-			</Routes>
-			<Footer />
-		</div>
-	);
+  return (
+    <div className="App">
+      <Header />
+      <Routes>
+        <Route exact path="/" element={<TasksList />} />
+        <Route exact path="/login" element={<Login />} />
+        <Route exact path="*" element={<NotFoundPage />} />
+      </Routes>
+      <Footer />
+    </div>
+  );
 }
 
 export default App;
