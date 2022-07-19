@@ -39,4 +39,4 @@ The page will reload when you make changes.
 
 # Public domain
 
----
+[Simple task manager](https://bakay-task-manager.netlify.app/)
